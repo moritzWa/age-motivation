@@ -13,7 +13,7 @@ const cards: MotivationCardsType[] = [
     age: 25,
     name: "Steve Jobs",
     verb: "takes public",
-    what: "Apple",
+    what: "Apple ($1.2B)",
   },
   {
     age: 26,
@@ -63,7 +63,69 @@ const cards: MotivationCardsType[] = [
     verb: "co-founds",
     what: "Uber",
   },
+  {
+    age: 26,
+    name: "Albert Einstein",
+    verb: "publishes",
+    what: "Theory of Relativity",
+  },
+  {
+    age: 30,
+    name: "Alexander Hamilton",
+    verb: "drafts",
+    what: "The Federalist Papers",
+  },
+  {
+    age: 25,
+    name: "Isaac Asimov",
+    verb: "published",
+    what: "Foundation",
+  },
+  {
+    age: 21,
+    name: "Walt Disney",
+    verb: "founds",
+    what: "Disney",
+  },
+  {
+    age: 29,
+    name: "George Lucas",
+    verb: "starts writing",
+    what: "Star Wars",
+  },
+  {
+    age: 23,
+    name: "Daniel Ek",
+    verb: "launches",
+    what: "Spotify",
+  },
+  {
+    age: 25,
+    name: "Drew Houston",
+    verb: "launches",
+    what: "Dropbox",
+  },
+  {
+    age: 26,
+    name: "Brian Chesky",
+    verb: "launches",
+    what: "Airbnb",
+  },
+  {
+    age: 26,
+    name: "Albert Einstein",
+    verb: "publishes",
+    what: "Theory of Relativity",
+  },
+  {
+    age: 35,
+    name: "Abraham H. Maslow",
+    verb: "publishes",
+    what: "A Theory of Human Motivation",
+  },
 ];
+
+const cardsSortedByAge = cards.sort((a, b) => a.age - b.age);
 
 const Card = ({ age, name, verb, what }: MotivationCardsType) => (
   <div className="pb-4 text-gray-600 dark:text-gray-300 max-h-80">
@@ -84,7 +146,7 @@ const Card = ({ age, name, verb, what }: MotivationCardsType) => (
 function MotivationCards() {
   return (
     <div className="h-full">
-      {cards.map((c) => (
+      {cardsSortedByAge.map((c) => (
         <Card {...c} />
       ))}
     </div>

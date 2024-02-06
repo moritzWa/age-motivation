@@ -27,12 +27,25 @@ function App() {
   const weeksUsed = Math.floor(age * 52);
   const weeksLeft = lifeExpectancy * 52 - weeksUsed;
 
+  const [width, setWidth] = useState(window.innerWidth);
+  const [height, setHeight] = useState(window.innerHeight);
+  const updateDimensions = () => {
+    setWidth(window.innerWidth);
+    setHeight(window.innerHeight);
+  };
+  useEffect(() => {
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
+
   return (
     <div className="grid grid-cols-2 m-auto mt-24 mb-12 gap-11 px-11 max-w-7xl">
       <div className="flex flex-col">
         <Tooltip id="my-tooltip" />
         <div className="flex justify-between text-[60px] gap-2 leading-10 dark:text-gray-200 text-gray-900">
-          <div className="mb-5 font-medium">{age.toFixed(9)}</div>
+          <div className="mb-5 font-medium">
+            {age.toFixed(width < 871 ? width / 100 - 1 : 9)}
+          </div>
           {/* <div
             className="mb-5 font-medium text-right"
             data-tooltip-id="my-tooltip"
