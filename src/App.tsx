@@ -28,7 +28,7 @@ function App() {
   const weeksLeft = lifeExpectancy * 52 - weeksUsed;
 
   return (
-    <div className="grid grid-cols-2 gap-4 px-5 m-auto mt-32 mb-12 max-w-7xl">
+    <div className="grid grid-cols-2 gap-6 px-6 m-auto mt-32 mb-12 max-w-7xl">
       <div className="flex flex-col">
         <Tooltip id="my-tooltip" />
         <div className="grid grid-cols-2 gap-2">
