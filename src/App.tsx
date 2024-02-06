@@ -15,7 +15,6 @@ function App() {
   }, [birthdate]);
 
   const lifeExpectancy = 85;
-  const totalWeeksInGrid = 98 * 52;
   const weeksUntilBirthdayInFirstYearAlive = Math.floor(
     (new Date().getTime() -
       new Date(new Date().getFullYear(), 0, 1).getTime()) /
@@ -46,13 +45,8 @@ function App() {
           className="grid"
           style={{
             gridTemplateColumns: "repeat(52, 1fr)",
-            // gridTemplateRows: "repeat(98, 1fr)",
           }}
         >
-          {/* {map small div for every week that is left */}
-          {/* {Array.from({ length: totalWeeksInGrid }, (_, i) => (
-            <div key={i} className="border border-white bg-slate-300 h-[7px]" />
-          ))} */}
           {Array.from(
             { length: weeksUntilBirthdayInFirstYearAlive },
             (_, i) => (
