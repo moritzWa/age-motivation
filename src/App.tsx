@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       setAge((Date.now() - birthdate.getTime()) / 1000 / 60 / 60 / 24 / 365);
-    }, 1000);
+    }, 100);
     return () => clearInterval(interval);
   }, [birthdate]);
 
@@ -28,18 +28,18 @@ function App() {
   const weeksLeft = lifeExpectancy * 52 - weeksUsed;
 
   return (
-    <div className="grid grid-cols-2 gap-16 px-6 m-auto mt-32 mb-12 max-w-7xl">
+    <div className="grid grid-cols-2 m-auto mt-24 mb-12 gap-11 px-11 max-w-7xl">
       <div className="flex flex-col">
         <Tooltip id="my-tooltip" />
-        <div className="grid grid-cols-2 gap-2 leading-10 text-gray-100">
-          <div className="mb-5 text-[30px] font-medium">{age.toFixed(9)}</div>
-          <div
-            className="mb-5 text-[45px] font-medium text-right"
+        <div className="flex justify-between text-[60px] gap-2 leading-10 dark:text-gray-200 text-gray-900">
+          <div className="mb-5 font-medium">{age.toFixed(9)}</div>
+          {/* <div
+            className="mb-5 font-medium text-right"
             data-tooltip-id="my-tooltip"
             data-tooltip-content="Life expectancy - age"
           >
             {(lifeExpectancy - age).toFixed(9)}
-          </div>
+          </div> */}
         </div>
         <div
           className="grid"
@@ -52,26 +52,43 @@ function App() {
             (_, i) => (
               <div
                 key={i}
-                className="border border-white bg-slate-300 h-[8px]"
+                className="border border-white dark:border-gray-900 bg-gray-300 dark:bg-gray-700 h-[8px]"
               />
             )
           )}
           {Array.from({ length: weeksUsed - 1 }, (_, i) => (
-            <div key={i} className="border border-white bg-slate-500 h-[8px]" />
+            <div
+              key={i}
+              className="border border-white dark:border-gray-900 bg-gray-500 h-[8px]"
+            />
           ))}
           <div
             key="current"
             data-tooltip-id="my-tooltip"
             data-tooltip-content="You are here."
-            className="border border-white bg-green-500 h-[8px]"
+            className="border border-white dark:border-gray-900 bg-green-500 dark:bg-green-500 h-[8px]"
           />
           {Array.from({ length: weeksLeft }, (_, i) => (
-            <div key={i} className="border border-white bg-slate-300 h-[8px]" />
+            <div
+              key={i}
+              className="border border-white dark:border-gray-900 bg-gray-200 dark:bg-gray-700 h-[8px]"
+            />
           ))}
         </div>
       </div>
       <div className="w-full">
         <MotivationCards />
+        <div className="flex justify-end text-xs text-gray-500 dark:text-gray-400">
+          <p>
+            Made by{" "}
+            <a
+              href="https://x.com/MoritzW42/"
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-500"
+            >
+              Moritz W.
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );
