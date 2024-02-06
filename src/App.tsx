@@ -19,7 +19,7 @@ function App() {
   }, [birthdate]);
 
   const lifeExpectancy = 85;
-  const weeksUntilBirthdayInFirstYearAlive = Math.floor(
+  const weeksUntilBirthInFirstYear = Math.floor(
     (new Date().getTime() -
       new Date(new Date().getFullYear(), 0, 1).getTime()) /
       1000 /
@@ -28,21 +28,20 @@ function App() {
       24 /
       7
   );
-  const weeksUsed = Math.floor(age * 52);
-  const weeksLeft = lifeExpectancy * 52 - weeksUsed;
 
   const [width, setWidth] = useState(window.innerWidth);
-  const [height, setHeight] = useState(window.innerHeight);
   const updateDimensions = () => {
     setWidth(window.innerWidth);
-    setHeight(window.innerHeight);
   };
+
   useEffect(() => {
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
   }, []);
 
-  const totalWeeks = weeksUntilBirthdayInFirstYearAlive + weeksUsed + weeksLeft;
+  const weeksUsed = Math.floor(age * 52);
+  const weeksLeft = lifeExpectancy * 52 - weeksUsed;
+  const totalWeeks = weeksUntilBirthInFirstYear + weeksUsed + weeksLeft;
   const getWeekNumber = (birthday: string, eventDate: string) => {
     const birth = new Date(birthday);
     const event = new Date(eventDate);
@@ -66,22 +65,21 @@ function App() {
           const isHovered =
             hoveredCard &&
             i ===
-              weeksUntilBirthdayInFirstYearAlive +
+              weeksUntilBirthInFirstYear +
                 getWeekNumber(hoveredCard.birthday, hoveredCard.eventDate);
-          const isBeforeBirth = i < weeksUntilBirthdayInFirstYearAlive;
+          const isBeforeBirth = i < weeksUntilBirthInFirstYear;
           const isPast =
-            i >= weeksUntilBirthdayInFirstYearAlive &&
-            i < weeksUntilBirthdayInFirstYearAlive + weeksUsed;
-          const isFuture = i >= weeksUntilBirthdayInFirstYearAlive + weeksUsed;
-          const isCurrent =
-            i === weeksUntilBirthdayInFirstYearAlive + weeksUsed - 1;
+            i >= weeksUntilBirthInFirstYear &&
+            i < weeksUntilBirthInFirstYear + weeksUsed;
+          const isFuture = i >= weeksUntilBirthInFirstYear + weeksUsed;
+          const isCurrent = i === weeksUntilBirthInFirstYear + weeksUsed - 1;
 
           return (
             <div
               key={i}
               className={`border border-white dark:border-gray-900 h-[8px] ${
                 isHovered
-                  ? "bg-red-500"
+                  ? "bg-purple-400"
                   : isBeforeBirth
                   ? "bg-gray-300 dark:bg-gray-700"
                   : isCurrent

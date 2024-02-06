@@ -6,8 +6,8 @@ type MotivationCardsType = {
   name: string;
   verb: string;
   what: string;
-  birthday?: string;
-  eventDate?: string;
+  birthday: string;
+  eventDate: string;
 };
 
 // interface MotivationCardsProps {
@@ -184,7 +184,6 @@ const cards: MotivationCardsType[] = [
 const cardsSortedByAge = cards.sort((a, b) => a.age - b.age);
 
 const Card = ({
-  age,
   name,
   verb,
   what,
@@ -200,6 +199,9 @@ const Card = ({
   const onMouseLeave = () => {
     setHoveredCard(null);
   };
+
+  const age =
+    new Date(eventDate).getFullYear() - new Date(birthday).getFullYear();
 
   return (
     <div
