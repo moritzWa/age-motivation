@@ -49,9 +49,13 @@ function App() {
               />
             )
           )}
-          {Array.from({ length: weeksUsed }, (_, i) => (
+          {Array.from({ length: weeksUsed - 1 }, (_, i) => (
             <div key={i} className="border border-white bg-slate-500 h-[8px]" />
           ))}
+          <div
+            key="current"
+            className="border border-white bg-green-500 h-[8px]"
+          />
           {Array.from({ length: weeksLeft }, (_, i) => (
             <div key={i} className="border border-white bg-slate-300 h-[8px]" />
           ))}
