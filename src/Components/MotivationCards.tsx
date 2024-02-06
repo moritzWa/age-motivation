@@ -4,31 +4,36 @@
 type MotivationCardsType = {
   age: number;
   name: string;
-  nameDoesEvent: string;
-  //   exactDate: string;
-  //   image: string;
+  verb: string;
+  what: string;
 };
 
 const cards: MotivationCardsType[] = [
   {
     age: 25,
     name: "Steve Jobs",
-    nameDoesEvent: "takes apple public",
-    // exactDate: "Aug. 2, 2018",
-    // image: SteveJobsPlayingGame,
+    verb: "takes public",
+    what: "Apple",
   },
   {
     age: 26,
     name: "Kanye West",
-    nameDoesEvent: "releases College Dropout",
-    // image: KanyeWestColledgeDropout,
+    verb: "releases",
+    what: "College Dropout",
   },
 ];
 
-const Card = ({ age, name, nameDoesEvent }: MotivationCardsType) => (
-  <div className="pb-4 max-h-80">
-    <div className="pb-2">
-      {name} {nameDoesEvent} at age {age}
+const Card = ({ age, name, verb, what }: MotivationCardsType) => (
+  <div className="pb-4 text-gray-600 dark:text-gray-400 max-h-80">
+    <div>
+      <span className="font-medium text-gray-900 dark:text-gray-100">
+        {name}
+      </span>{" "}
+      {verb}{" "}
+      <span className="font-medium text-gray-900 dark:text-gray-100">
+        {what}
+      </span>{" "}
+      at age {age}
     </div>
     {/* <img src={image} alt={name} className="object-contain w-full" /> */}
   </div>
@@ -36,7 +41,7 @@ const Card = ({ age, name, nameDoesEvent }: MotivationCardsType) => (
 
 function MotivationCards() {
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="">
       {cards.map((c) => (
         <Card {...c} />
       ))}
