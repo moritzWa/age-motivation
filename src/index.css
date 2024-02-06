@@ -17,5 +17,5 @@ code {
 }
 
 .dark {
-  @apply bg-slate-900;
+  @apply bg-gray-900;
 }
