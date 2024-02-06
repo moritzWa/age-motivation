@@ -19,3 +19,12 @@ code {
 .dark {
   @apply bg-gray-900;
 }
+
+html,
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}

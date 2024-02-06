@@ -71,9 +71,9 @@ const cards: MotivationCardsType[] = [
     age: 28,
     name: "Elon Musk",
     verb: "co-founds",
-    what: "PayPal",
+    what: "X.com",
     birthday: "1971-06-28",
-    eventDate: "1999-12-02",
+    eventDate: "1999-03-01",
   },
   {
     age: 25,
@@ -181,7 +181,13 @@ const cards: MotivationCardsType[] = [
   },
 ];
 
-const cardsSortedByAge = cards.sort((a, b) => a.age - b.age);
+// sort using event.getTime() - birth.getTime();
+const cardsSortedByAge = cards.sort(
+  (a, b) =>
+    new Date(a.eventDate).getTime() -
+    new Date(a.birthday).getTime() -
+    (new Date(b.eventDate).getTime() - new Date(b.birthday).getTime())
+);
 
 const Card = ({
   name,
@@ -205,7 +211,7 @@ const Card = ({
 
   return (
     <div
-      className="pb-4 text-gray-600 dark:text-gray-300 max-h-80"
+      className="pb-4 text-gray-600 cursor-pointer hover:underline decoration-red-200 dark:text-gray-300 max-h-80 hover:underline-offset-2"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >

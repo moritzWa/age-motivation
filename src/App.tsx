@@ -79,7 +79,7 @@ function App() {
               key={i}
               className={`border border-white dark:border-gray-900 h-[8px] ${
                 isHovered
-                  ? "bg-purple-400"
+                  ? "bg-red-400"
                   : isBeforeBirth
                   ? "bg-gray-300 dark:bg-gray-700"
                   : isCurrent
@@ -99,29 +99,31 @@ function App() {
   };
 
   return (
-    <div className="grid grid-cols-2 m-auto mt-24 mb-12 gap-11 px-11 max-w-7xl">
-      <div className="flex flex-col">
-        <Tooltip id="my-tooltip" />
-        <div className="flex justify-between text-[60px] gap-2 leading-10 dark:text-gray-200 text-gray-900">
-          <div className="mb-5 font-medium">
-            {age.toFixed(width < 871 ? width / 100 - 1 : 9)}
+    <div className="flex flex-col justify-between h-full">
+      <div className="grid grid-cols-2 m-auto mt-24 mb-12 gap-11 px-11 max-w-7xl">
+        <div className="flex flex-col">
+          <Tooltip id="my-tooltip" />
+          <div className="flex justify-between text-[60px] gap-2 leading-10 dark:text-gray-200 text-gray-900">
+            <div className="mb-5 font-medium">
+              {age.toFixed(width < 871 ? width / 100 - 1 : 9)}
+            </div>
           </div>
+          <WeekUI />
         </div>
-        <WeekUI />
+        <div className="w-full">
+          <MotivationCards setHoveredCard={setHoveredCard} />
+        </div>
       </div>
-      <div className="w-full">
-        <MotivationCards setHoveredCard={setHoveredCard} />
-        <div className="flex justify-end text-xs text-gray-500 dark:text-gray-400">
-          <p>
-            Made by{" "}
-            <a
-              href="https://x.com/MoritzW42/"
-              className="text-gray-700 dark:text-gray-300 hover:text-blue-500"
-            >
-              Moritz W.
-            </a>
-          </p>
-        </div>
+      <div className="flex justify-end p-4 text-xs text-gray-500 dark:text-gray-400">
+        <p>
+          Made by{" "}
+          <a
+            href="https://x.com/MoritzW42/"
+            className="text-gray-700 dark:text-gray-300 hover:text-blue-500"
+          >
+            Moritz W.
+          </a>
+        </p>
       </div>
     </div>
   );
