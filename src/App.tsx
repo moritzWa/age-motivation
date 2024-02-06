@@ -42,6 +42,64 @@ function App() {
     return () => window.removeEventListener("resize", updateDimensions);
   }, []);
 
+  const totalWeeks = weeksUntilBirthdayInFirstYearAlive + weeksUsed + weeksLeft;
+  const getWeekNumber = (birthday: string, eventDate: string) => {
+    const birth = new Date(birthday);
+    const event = new Date(eventDate);
+    const diff = event.getTime() - birth.getTime();
+    const oneWeek = 1000 * 60 * 60 * 24 * 7;
+    return Math.floor(diff / oneWeek);
+  };
+
+  // Calculate total weeks of life expectancy
+  const weeks = Array.from({ length: totalWeeks });
+
+  const WeekUI = () => {
+    return (
+      <div
+        className="grid"
+        style={{
+          gridTemplateColumns: "repeat(52, 1fr)",
+        }}
+      >
+        {weeks.map((_, i) => {
+          const isHovered =
+            hoveredCard &&
+            i ===
+              weeksUntilBirthdayInFirstYearAlive +
+                getWeekNumber(hoveredCard.birthday, hoveredCard.eventDate);
+          const isBeforeBirth = i < weeksUntilBirthdayInFirstYearAlive;
+          const isPast =
+            i >= weeksUntilBirthdayInFirstYearAlive &&
+            i < weeksUntilBirthdayInFirstYearAlive + weeksUsed;
+          const isFuture = i >= weeksUntilBirthdayInFirstYearAlive + weeksUsed;
+          const isCurrent =
+            i === weeksUntilBirthdayInFirstYearAlive + weeksUsed - 1;
+
+          return (
+            <div
+              key={i}
+              className={`border border-white dark:border-gray-900 h-[8px] ${
+                isHovered
+                  ? "bg-red-500"
+                  : isBeforeBirth
+                  ? "bg-gray-300 dark:bg-gray-700"
+                  : isCurrent
+                  ? "bg-green-500 dark:bg-green-500"
+                  : isPast
+                  ? "bg-gray-500"
+                  : isFuture
+                  ? "bg-gray-200 dark:bg-gray-700"
+                  : ""
+              }`}
+              data-tooltip-content={isCurrent ? "You are here." : undefined}
+            />
+          );
+        })}
+      </div>
+    );
+  };
+
   return (
     <div className="grid grid-cols-2 m-auto mt-24 mb-12 gap-11 px-11 max-w-7xl">
       <div className="flex flex-col">
@@ -50,48 +108,8 @@ function App() {
           <div className="mb-5 font-medium">
             {age.toFixed(width < 871 ? width / 100 - 1 : 9)}
           </div>
-          {/* <div
-            className="mb-5 font-medium text-right"
-            data-tooltip-id="my-tooltip"
-            data-tooltip-content="Life expectancy - age"
-          >
-            {(lifeExpectancy - age).toFixed(9)}
-          </div> */}
         </div>
-        <div
-          className="grid"
-          style={{
-            gridTemplateColumns: "repeat(52, 1fr)",
-          }}
-        >
-          {Array.from(
-            { length: weeksUntilBirthdayInFirstYearAlive },
-            (_, i) => (
-              <div
-                key={i}
-                className="border border-white dark:border-gray-900 bg-gray-300 dark:bg-gray-700 h-[8px]"
-              />
-            )
-          )}
-          {Array.from({ length: weeksUsed - 1 }, (_, i) => (
-            <div
-              key={i}
-              className="border border-white dark:border-gray-900 bg-gray-500 h-[8px]"
-            />
-          ))}
-          <div
-            key="current"
-            data-tooltip-id="my-tooltip"
-            data-tooltip-content="You are here."
-            className="border border-white dark:border-gray-900 bg-green-500 dark:bg-green-500 h-[8px]"
-          />
-          {Array.from({ length: weeksLeft }, (_, i) => (
-            <div
-              key={i}
-              className="border border-white dark:border-gray-900 bg-gray-200 dark:bg-gray-700 h-[8px]"
-            />
-          ))}
-        </div>
+        <WeekUI />
       </div>
       <div className="w-full">
         <MotivationCards setHoveredCard={setHoveredCard} />
