@@ -6,6 +6,10 @@ import MotivationCards from "./Components/MotivationCards";
 function App() {
   const birthdate = new Date("1998-12-13");
   const [age, setAge] = useState(0);
+  const [hoveredCard, setHoveredCard] = useState<{
+    eventDate: string;
+    birthday: string;
+  } | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -90,7 +94,7 @@ function App() {
         </div>
       </div>
       <div className="w-full">
-        <MotivationCards />
+        <MotivationCards setHoveredCard={setHoveredCard} />
         <div className="flex justify-end text-xs text-gray-500 dark:text-gray-400">
           <p>
             Made by{" "}

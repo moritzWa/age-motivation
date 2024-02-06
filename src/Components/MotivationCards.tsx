@@ -10,6 +10,22 @@ type MotivationCardsType = {
   eventDate?: string;
 };
 
+// interface MotivationCardsProps {
+// setHoveredCard: React.Dispatch<React.SetStateAction<{ eventDate: string, birthday: string } | null>>;
+// }
+
+interface MotivationCardsProps {
+  setHoveredCard: (
+    newState: { eventDate: string; birthday: string } | null
+  ) => void;
+}
+
+interface CardProps extends MotivationCardsType {
+  setHoveredCard: (
+    newState: { eventDate: string; birthday: string } | null
+  ) => void;
+}
+
 const cards: MotivationCardsType[] = [
   {
     age: 25,
@@ -167,30 +183,53 @@ const cards: MotivationCardsType[] = [
 
 const cardsSortedByAge = cards.sort((a, b) => a.age - b.age);
 
-const Card = ({ age, name, verb, what }: MotivationCardsType) => (
-  <div className="pb-4 text-gray-600 dark:text-gray-300 max-h-80">
-    <div>
-      <span className="font-medium text-gray-900 dark:text-gray-100">
-        {name}
-      </span>{" "}
-      {verb}{" "}
-      <span className="font-medium text-gray-900 dark:text-gray-100">
-        {what}
-      </span>{" "}
-      at age {age}
-    </div>
-    {/* <img src={image} alt={name} className="object-contain w-full" /> */}
-  </div>
-);
+const Card = ({
+  age,
+  name,
+  verb,
+  what,
+  eventDate,
+  birthday,
+  setHoveredCard,
+}: CardProps) => {
+  const onMouseEnter = () => {
+    if (!eventDate || !birthday) return;
+    setHoveredCard({ eventDate, birthday });
+  };
 
-function MotivationCards() {
+  const onMouseLeave = () => {
+    setHoveredCard(null);
+  };
+
+  return (
+    <div
+      className="pb-4 text-gray-600 dark:text-gray-300 max-h-80"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <div>
+        <span className="font-medium text-gray-900 dark:text-gray-100">
+          {name}
+        </span>{" "}
+        {verb}{" "}
+        <span className="font-medium text-gray-900 dark:text-gray-100">
+          {what}
+        </span>{" "}
+        at age {age}
+      </div>
+      {/* <img src={image} alt={name} className="object-contain w-full" /> */}
+    </div>
+  );
+};
+
+const MotivationCards = ({ setHoveredCard }: MotivationCardsProps) => {
   return (
     <div className="h-full">
       {cardsSortedByAge.map((c) => (
-        <Card {...c} />
+        <Card {...c} setHoveredCard={setHoveredCard} />
       ))}
     </div>
   );
-}
+};
 
 export default MotivationCards;
