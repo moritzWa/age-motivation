@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
+import MotivationCards from "./Components/MotivationCards";
 
 function App() {
   const birthdate = new Date("1998-12-13");
@@ -28,7 +31,17 @@ function App() {
   return (
     <div className="grid grid-cols-2 gap-4 px-5 m-auto mt-32 mb-12 max-w-7xl">
       <div className="flex flex-col">
-        <div className="mb-5 text-6xl font-medium">{age.toFixed(9)}</div>
+        <Tooltip id="my-tooltip" />
+        <div className="grid grid-cols-2 gap-2">
+          <div className="mb-5 text-[45px] font-medium">{age.toFixed(9)}</div>
+          <div
+            className="mb-5 text-[45px] font-medium text-right"
+            data-tooltip-id="my-tooltip"
+            data-tooltip-content="Life expectancy - age"
+          >
+            {(lifeExpectancy - age).toFixed(9)}
+          </div>
+        </div>
         <div
           className="grid"
           style={{
@@ -54,6 +67,8 @@ function App() {
           ))}
           <div
             key="current"
+            data-tooltip-id="my-tooltip"
+            data-tooltip-content="You are here."
             className="border border-white bg-green-500 h-[8px]"
           />
           {Array.from({ length: weeksLeft }, (_, i) => (
@@ -61,7 +76,9 @@ function App() {
           ))}
         </div>
       </div>
-      <div className="w-full">bla</div>
+      <div className="w-full">
+        <MotivationCards />
+      </div>
     </div>
   );
 }
