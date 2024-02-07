@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import MotivationCards from "./Components/MotivationCards";
@@ -19,14 +19,18 @@ function App() {
   }, [birthdate]);
 
   const lifeExpectancy = 85;
-  const weeksUntilBirthInFirstYear = Math.floor(
-    (new Date().getTime() -
-      new Date(new Date().getFullYear(), 0, 1).getTime()) /
-      1000 /
-      60 /
-      60 /
-      24 /
-      7
+  const weeksUntilBirthInFirstYear = useMemo(
+    () =>
+      Math.floor(
+        (new Date().getTime() -
+          new Date(new Date().getFullYear(), 0, 1).getTime()) /
+          1000 /
+          60 /
+          60 /
+          24 /
+          7
+      ),
+    []
   );
 
   const [width, setWidth] = useState(window.innerWidth);
@@ -58,9 +62,13 @@ function App() {
   );
 
   // Calculate total weeks of life expectancy
-  const weeks = Array.from({ length: totalWeeks });
+  const [weeks, setWeeks] = useState([]);
 
-  const WeekUI = () => {
+  useEffect(() => {
+    setWeeks(Array.from({ length: totalWeeks }));
+  }, [totalWeeks]);
+
+  const WeekUI = React.memo(() => {
     return (
       <div
         className="grid"
@@ -103,21 +111,25 @@ function App() {
         })}
       </div>
     );
-  };
+  });
 
-  const MiniStat = ({
-    countedEntity,
-    variable,
-  }: {
-    countedEntity: string;
-    variable: number;
-  }) => (
-    <div className="grid grid-flow-col gap-2">
-      <span className="text-gray-600 dark:text-gray-300">{countedEntity}</span>
-      <span className="font-medium text-gray-900 dark:text-gray-100">
-        {variable}
-      </span>
-    </div>
+  const MiniStat = React.memo(
+    ({
+      countedEntity,
+      variable,
+    }: {
+      countedEntity: string;
+      variable: number;
+    }) => (
+      <div className="grid grid-flow-col gap-2">
+        <span className="text-gray-600 dark:text-gray-300">
+          {countedEntity}
+        </span>
+        <span className="font-medium text-gray-900 dark:text-gray-100">
+          {variable}
+        </span>
+      </div>
+    )
   );
 
   return (
@@ -129,10 +141,12 @@ function App() {
             <div className="font-medium leading-[45px] text-[60px]">
               {age.toFixed(width < 871 ? width / 100 - 1 : 9)}
             </div>
-            <div className="flex flex-col justify-between text-sm leading-5">
-              <MiniStat countedEntity="Day" variable={daysAlive} />
-              <MiniStat countedEntity="Week" variable={weeksAlive} />
-            </div>
+            {width > 1030 && (
+              <div className="flex flex-col justify-between text-sm leading-5">
+                <MiniStat countedEntity="Day" variable={daysAlive} />
+                <MiniStat countedEntity="Week" variable={weeksAlive} />
+              </div>
+            )}
           </div>
           <WeekUI />
         </div>
