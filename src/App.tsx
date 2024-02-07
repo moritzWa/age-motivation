@@ -118,7 +118,7 @@ function App() {
   return (
     <div className="flex flex-col justify-between h-full">
       <div className="grid grid-cols-2 m-auto mt-24 mb-12 gap-11 px-11 max-w-7xl">
-        <div className="flex flex-col">
+        <div className={`flex flex-col ${width > 1090 ? "w-[500px]" : ""}`}>
           <Tooltip id="my-tooltip" />
           <div className="flex justify-between gap-2 mb-5 text-gray-900 dark:text-gray-200">
             <AgeCounter birthdate={birthdate} width={width} />
