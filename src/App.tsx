@@ -115,6 +115,8 @@ function App() {
         </div>
       </div>
       <div className="flex justify-end p-4 text-xs text-gray-500 dark:text-gray-400">
+        <p>Settings</p>
+        <span className="px-2">•</span>
         <p>
           Made by{" "}
           <a

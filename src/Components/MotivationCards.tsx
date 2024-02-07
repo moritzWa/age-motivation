@@ -164,14 +164,6 @@ const cards: MotivationCardsType[] = [
     eventDate: "2008-08-11",
   },
   {
-    age: 26,
-    name: "Albert Einstein",
-    verb: "publishes",
-    what: "Theory of Relativity",
-    birthday: "1879-03-14",
-    eventDate: "1905-06-30",
-  },
-  {
     age: 35,
     name: "Abraham H. Maslow",
     verb: "publishes",
