@@ -211,7 +211,7 @@ const Card = ({
 
   return (
     <div
-      className="pb-4 text-gray-600 cursor-pointer hover:underline decoration-red-200 dark:text-gray-300 max-h-80 hover:underline-offset-2"
+      className="pb-4 text-base text-gray-600 cursor-pointer hover:underline decoration-red-200 dark:text-gray-300 max-h-80 hover:underline-offset-2"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >

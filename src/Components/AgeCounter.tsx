@@ -13,7 +13,7 @@ export const AgeCounter = React.memo(
 
     return (
       <div className="font-medium leading-[45px] text-[60px]">
-        {age.toFixed(width < 871 ? width / 100 - 1 : 9)}
+        {age.toFixed(width < 871 ? width / 100 : 9)}
       </div>
     );
   }
