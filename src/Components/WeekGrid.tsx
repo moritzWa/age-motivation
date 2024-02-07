@@ -14,7 +14,6 @@ export const WeekGrid = React.memo(
     hoveredCard: { birthday: string; eventDate: string } | null;
     getWeekNumber: (birthday: string, eventDate: string) => number;
   }) => {
-    // Component code...
     return (
       <div
         className="grid gap-[0.5px]"
