@@ -28,6 +28,14 @@ interface CardProps extends MotivationCardsType {
 
 const cards: MotivationCardsType[] = [
   {
+    age: 21,
+    name: "Palmer Luckey",
+    verb: "sells",
+    what: "Oculus VR to Facebook ($2B)",
+    birthday: "1992-09-19",
+    eventDate: "2014-03-25",
+  },
+  {
     age: 25,
     name: "Steve Jobs",
     verb: "takes public",
