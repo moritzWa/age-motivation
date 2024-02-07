@@ -2,11 +2,17 @@ import React, { useEffect, useState } from "react";
 
 export const AgeCounter = React.memo(
   ({ birthdate, width }: { birthdate: Date; width: number }) => {
-    const [age, setAge] = useState(0);
+    // Get the last age from localStorage or set it to 0 if it doesn't exist
+    const lastAge = localStorage.getItem("lastAge") || "0";
+    const [age, setAge] = useState(parseFloat(lastAge));
 
     useEffect(() => {
       const interval = setInterval(() => {
-        setAge((Date.now() - birthdate.getTime()) / 1000 / 60 / 60 / 24 / 365);
+        const newAge =
+          (Date.now() - birthdate.getTime()) / 1000 / 60 / 60 / 24 / 365;
+        setAge(newAge);
+        // Save the new age to localStorage
+        localStorage.setItem("lastAge", newAge.toString());
       }, 100);
       return () => clearInterval(interval);
     }, [birthdate]);
