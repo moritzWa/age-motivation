@@ -1,6 +1,3 @@
-// import KanyeWestColledgeDropout from "../Images/KanyeWestColledgeDropout.jpg";
-// import SteveJobsPlayingGame from "../Images/SteveJobsPlayingGame.png";
-
 type MotivationCardsType = {
   age?: number; // note this is unnecessary, but keeping it for code readability
   name: string;
@@ -261,7 +258,6 @@ const cards: MotivationCardsType[] = [
   // The Indian mathematician Srinivasa Ramanujan independently developed and investigated the Bernoulli numbers at the age of 17.
 ];
 
-// sort using event.getTime() - birth.getTime();
 const cardsSortedByAge = cards.sort(
   (a, b) =>
     new Date(a.eventDate).getTime() -
@@ -305,7 +301,6 @@ const Card = ({
         </span>{" "}
         at age {age}
       </div>
-      {/* <img src={image} alt={name} className="object-contain w-full" /> */}
     </div>
   );
 };

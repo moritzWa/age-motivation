@@ -50,6 +50,7 @@ export const WeekGrid = React.memo(
                   ? "bg-gray-200 dark:bg-gray-700"
                   : ""
               }`}
+              data-tooltip-id="my-tooltip"
               data-tooltip-content={isCurrent ? "You are here." : undefined}
             />
           );
