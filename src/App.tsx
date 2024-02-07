@@ -3,18 +3,53 @@ import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import { AgeCounter } from "./Components/AgeCounter";
 import MotivationCards from "./Components/MotivationCards";
+import Settings from "./Components/Settings";
 import { WeekGrid } from "./Components/WeekGrid";
 
 function App() {
-  const birthdate = new Date("1998-12-13");
-  const age = (Date.now() - birthdate.getTime()) / 1000 / 60 / 60 / 24 / 365;
+  // settings
+  const [settings, setSettings] = useState<{
+    birthdate: string;
+    lifeExpectancy: number;
+  } | null>(() => {
+    const savedSettings = localStorage.getItem("settings");
+    return savedSettings ? JSON.parse(savedSettings) : null;
+  });
 
+  const [showSettings, setShowSettings] = useState(!settings);
+
+  const birthdate = new Date(settings?.birthdate || "1998-13-12");
+  const lifeExpectancy = settings?.lifeExpectancy || 85;
+
+  const handleSave = (newSettings: {
+    birthdate: string;
+    lifeExpectancy: number;
+  }) => {
+    setSettings(newSettings);
+    localStorage.setItem("settings", JSON.stringify(newSettings));
+    setShowSettings(false);
+  };
+
+  const handleOpenSettings = () => {
+    setShowSettings(true);
+  };
+
+  // resizing logic
+  useEffect(() => {
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
+  const [width, setWidth] = useState(window.innerWidth);
+  const updateDimensions = () => {
+    setWidth(window.innerWidth);
+  };
+
+  // card hovering
   const [hoveredCard, setHoveredCard] = useState<{
     eventDate: string;
     birthday: string;
   } | null>(null);
 
-  const lifeExpectancy = 85;
   const weeksUntilBirthInFirstYear = useMemo(
     () =>
       Math.floor(
@@ -29,16 +64,8 @@ function App() {
     []
   );
 
-  const [width, setWidth] = useState(window.innerWidth);
-  const updateDimensions = () => {
-    setWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", updateDimensions);
-    return () => window.removeEventListener("resize", updateDimensions);
-  }, []);
-
+  // main stats
+  const age = (Date.now() - birthdate.getTime()) / 1000 / 60 / 60 / 24 / 365;
   const weeksUsed = Math.floor(age * 52);
   const weeksLeft = lifeExpectancy * 52 - weeksUsed;
   const totalWeeks = weeksUntilBirthInFirstYear + weeksUsed + weeksLeft;
@@ -56,10 +83,18 @@ function App() {
     (Date.now() - birthdate.getTime()) / 1000 / 60 / 60 / 24
   );
   const [weeks, setWeeks] = useState([]);
-
   useEffect(() => {
     setWeeks(Array.from({ length: totalWeeks }));
   }, [totalWeeks]);
+
+  // Settings UI
+  if (showSettings) {
+    return <Settings onSave={handleSave} currentSettings={settings} />;
+  }
+
+  if (!settings) {
+    return <Settings onSave={handleSave} currentSettings={null} />;
+  }
 
   const MiniStat = React.memo(
     ({
@@ -107,7 +142,7 @@ function App() {
         </div>
       </div>
       <div className="flex justify-end p-4 text-xs text-gray-500 dark:text-gray-400">
-        <p>Settings</p>
+        <p onClick={handleOpenSettings}>Settings</p>
         <span className="px-2">•</span>
         <p>
           Made by{" "}

@@ -17,7 +17,7 @@ export const WeekGrid = React.memo(
     // Component code...
     return (
       <div
-        className="grid"
+        className="grid gap-[0.5px]"
         style={{
           gridTemplateColumns: "repeat(52, 1fr)",
         }}
