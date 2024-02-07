@@ -322,7 +322,9 @@ const cards: MotivationCardsType[] = [
   },
 ];
 
-const cardsSortedByAge = cards.sort(
+const randomCards = [...cards].sort(() => 0.5 - Math.random()).slice(0, 19);
+
+const cardsSortedByAge = randomCards.sort(
   (a, b) =>
     new Date(a.eventDate).getTime() -
     new Date(a.birthday).getTime() -
