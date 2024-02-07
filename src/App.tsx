@@ -50,6 +50,13 @@ function App() {
     return Math.floor(diff / oneWeek);
   };
 
+  const weeksAlive = Math.floor(
+    (Date.now() - birthdate.getTime()) / 1000 / 60 / 60 / 24 / 7
+  );
+  const daysAlive = Math.floor(
+    (Date.now() - birthdate.getTime()) / 1000 / 60 / 60 / 24
+  );
+
   // Calculate total weeks of life expectancy
   const weeks = Array.from({ length: totalWeeks });
 
@@ -98,14 +105,33 @@ function App() {
     );
   };
 
+  const MiniStat = ({
+    countedEntity,
+    variable,
+  }: {
+    countedEntity: string;
+    variable: number;
+  }) => (
+    <div className="grid grid-flow-col gap-2">
+      <span className="text-gray-600 dark:text-gray-300">{countedEntity}</span>
+      <span className="font-medium text-gray-900 dark:text-gray-100">
+        {variable}
+      </span>
+    </div>
+  );
+
   return (
     <div className="flex flex-col justify-between h-full">
       <div className="grid grid-cols-2 m-auto mt-24 mb-12 gap-11 px-11 max-w-7xl">
         <div className="flex flex-col">
           <Tooltip id="my-tooltip" />
-          <div className="flex justify-between text-[60px] gap-2 leading-10 dark:text-gray-200 text-gray-900">
-            <div className="mb-5 font-medium">
+          <div className="flex justify-between gap-2 mb-5 text-gray-900 dark:text-gray-200">
+            <div className="font-medium leading-[45px] text-[60px]">
               {age.toFixed(width < 871 ? width / 100 - 1 : 9)}
+            </div>
+            <div className="flex flex-col justify-between text-sm leading-5">
+              <MiniStat countedEntity="Day" variable={daysAlive} />
+              <MiniStat countedEntity="Week" variable={weeksAlive} />
             </div>
           </div>
           <WeekUI />
