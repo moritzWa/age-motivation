@@ -236,7 +236,6 @@ const cards: MotivationCardsType[] = [
     birthday: "1970-10-08",
     eventDate: "1997-12-05",
   },
-  // ada lovelace
   {
     name: "Ada Lovelace",
     verb: "writes",
@@ -251,11 +250,76 @@ const cards: MotivationCardsType[] = [
     birthday: "1994-05-07",
     eventDate: "2008-03-01",
   },
-
-  // The Collison brothers sold their first software company for $5 million at ages 17 and 19.
-  // Elon Musk famously sold his first computer game when he was 12.
-  // Shubham Banerjee created a low-cost Braille printer when he was 13.
-  // The Indian mathematician Srinivasa Ramanujan independently developed and investigated the Bernoulli numbers at the age of 17.
+  {
+    name: "Patrick Collison",
+    verb: "sells",
+    what: "Auctomatic (first company) for $5 million",
+    birthday: "1988-09-09",
+    eventDate: "2008-03-01",
+  },
+  {
+    name: "Elon Musk",
+    verb: "sells",
+    what: "Blastar (first computer game)",
+    birthday: "1971-06-28",
+    eventDate: "1983-01-01",
+  },
+  {
+    name: "Srinivasa Ramanujan",
+    verb: "independently developed and investigated",
+    what: "Bernoulli numbers",
+    birthday: "1887-12-22",
+    eventDate: "1911-12-01",
+  },
+  {
+    name: "Rosalind Franklin",
+    verb: "co-discovers",
+    what: "the helix structure of DNA",
+    birthday: "1920-07-25",
+    eventDate: "1953-04-25",
+  },
+  {
+    name: "Markus Persson",
+    verb: "creates",
+    what: "Minecraft",
+    birthday: "1979-06-01",
+    eventDate: "2009-05-17",
+  },
+  {
+    name: "Linus Torvalds",
+    verb: "creates",
+    what: "Linux kernel",
+    birthday: "1969-12-28",
+    eventDate: "1991-09-17",
+  },
+  {
+    name: "James Cameron",
+    verb: "directs",
+    what: "Titanic",
+    birthday: "1954-08-16",
+    eventDate: "1997-12-19",
+  },
+  {
+    name: "Larry Ellison",
+    verb: "co-founds",
+    what: "Oracle",
+    birthday: "1944-08-17",
+    eventDate: "1977-06-16",
+  },
+  {
+    name: "Mark Cuban",
+    verb: "sells",
+    what: "Broadcast.com to Yahoo ($5.7B)",
+    birthday: "1958-07-31",
+    eventDate: "1999-04-01",
+  },
+  {
+    name: "Michael Dell",
+    verb: "founds",
+    what: "Dell",
+    birthday: "1965-02-23",
+    eventDate: "1984-05-03",
+  },
 ];
 
 const cardsSortedByAge = cards.sort(
