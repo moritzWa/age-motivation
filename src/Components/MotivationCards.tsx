@@ -2,17 +2,13 @@
 // import SteveJobsPlayingGame from "../Images/SteveJobsPlayingGame.png";
 
 type MotivationCardsType = {
-  age: number;
+  age?: number; // note this is unnecessary, but keeping it for code readability
   name: string;
   verb: string;
   what: string;
   birthday: string;
   eventDate: string;
 };
-
-// interface MotivationCardsProps {
-// setHoveredCard: React.Dispatch<React.SetStateAction<{ eventDate: string, birthday: string } | null>>;
-// }
 
 interface MotivationCardsProps {
   setHoveredCard: (
@@ -179,6 +175,90 @@ const cards: MotivationCardsType[] = [
     birthday: "1908-04-01",
     eventDate: "1943-07-01",
   },
+  {
+    age: 32,
+    name: "David Deutsch",
+    verb: "publishes",
+    what: "seminal work on Quantum Theory",
+    birthday: "1953-05-18",
+    eventDate: "1985-07-08",
+  },
+  {
+    name: "Blaise Pascal",
+    verb: "invents",
+    what: "the mechanical calculator",
+    birthday: "1623-06-19",
+    eventDate: "1642-01-01",
+  },
+  {
+    name: "Jeff Bezos",
+    verb: "founds",
+    what: "Amazon",
+    birthday: "1964-01-12",
+    eventDate: "1994-07-05",
+  },
+  {
+    name: "Jeff Bezos",
+    verb: "scales",
+    what: "Amazon to $148M in ARR",
+    birthday: "1964-01-12",
+    eventDate: "1997-01-01",
+  },
+  {
+    name: "Pierre Omidyar",
+    verb: "launches",
+    what: "eBay",
+    birthday: "1967-06-21",
+    eventDate: "1995-09-03",
+  },
+  {
+    name: "Thomas Edison",
+    verb: "invents",
+    what: "the phonograph",
+    birthday: "1847-02-11",
+    eventDate: "1878-02-19",
+  },
+  {
+    name: "Marie Curie",
+    verb: "discovers",
+    what: "Radium",
+    birthday: "1867-11-07",
+    eventDate: "1898-12-21",
+  },
+  {
+    name: "Ayn Rand",
+    verb: "publishes",
+    what: "The Fountainhead",
+    birthday: "1905-02-02",
+    eventDate: "1957-10-09",
+  },
+  {
+    name: "Matt Damon",
+    verb: "writes and starrs in",
+    what: "Good Will Hunting",
+    birthday: "1970-10-08",
+    eventDate: "1997-12-05",
+  },
+  // ada lovelace
+  {
+    name: "Ada Lovelace",
+    verb: "writes",
+    what: "the first computer program",
+    birthday: "1815-12-10",
+    eventDate: "1843-01-01",
+  },
+  {
+    name: "Taylor Wilson",
+    verb: "builds",
+    what: "a nuclear fusion reactor",
+    birthday: "1994-05-07",
+    eventDate: "2008-03-01",
+  },
+
+  // The Collison brothers sold their first software company for $5 million at ages 17 and 19.
+  // Elon Musk famously sold his first computer game when he was 12.
+  // Shubham Banerjee created a low-cost Braille printer when he was 13.
+  // The Indian mathematician Srinivasa Ramanujan independently developed and investigated the Bernoulli numbers at the age of 17.
 ];
 
 // sort using event.getTime() - birth.getTime();
