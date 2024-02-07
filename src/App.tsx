@@ -1,22 +1,18 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
+import { AgeCounter } from "./Components/AgeCounter";
 import MotivationCards from "./Components/MotivationCards";
+import { WeekGrid } from "./Components/WeekGrid";
 
 function App() {
   const birthdate = new Date("1998-12-13");
-  const [age, setAge] = useState(0);
+  const age = (Date.now() - birthdate.getTime()) / 1000 / 60 / 60 / 24 / 365;
+
   const [hoveredCard, setHoveredCard] = useState<{
     eventDate: string;
     birthday: string;
   } | null>(null);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setAge((Date.now() - birthdate.getTime()) / 1000 / 60 / 60 / 24 / 365);
-    }, 100);
-    return () => clearInterval(interval);
-  }, [birthdate]);
 
   const lifeExpectancy = 85;
   const weeksUntilBirthInFirstYear = useMemo(
@@ -53,65 +49,17 @@ function App() {
     const oneWeek = 1000 * 60 * 60 * 24 * 7;
     return Math.floor(diff / oneWeek);
   };
-
   const weeksAlive = Math.floor(
     (Date.now() - birthdate.getTime()) / 1000 / 60 / 60 / 24 / 7
   );
   const daysAlive = Math.floor(
     (Date.now() - birthdate.getTime()) / 1000 / 60 / 60 / 24
   );
-
-  // Calculate total weeks of life expectancy
   const [weeks, setWeeks] = useState([]);
 
   useEffect(() => {
     setWeeks(Array.from({ length: totalWeeks }));
   }, [totalWeeks]);
-
-  const WeekUI = React.memo(() => {
-    return (
-      <div
-        className="grid"
-        style={{
-          gridTemplateColumns: "repeat(52, 1fr)",
-        }}
-      >
-        {weeks.map((_, i) => {
-          const isHovered =
-            hoveredCard &&
-            i ===
-              weeksUntilBirthInFirstYear +
-                getWeekNumber(hoveredCard.birthday, hoveredCard.eventDate);
-          const isBeforeBirth = i < weeksUntilBirthInFirstYear;
-          const isPast =
-            i >= weeksUntilBirthInFirstYear &&
-            i < weeksUntilBirthInFirstYear + weeksUsed;
-          const isFuture = i >= weeksUntilBirthInFirstYear + weeksUsed;
-          const isCurrent = i === weeksUntilBirthInFirstYear + weeksUsed - 1;
-
-          return (
-            <div
-              key={i}
-              className={`border border-white dark:border-gray-900 h-[8px] ${
-                isHovered
-                  ? "bg-red-400"
-                  : isBeforeBirth
-                  ? "bg-gray-300 dark:bg-gray-700"
-                  : isCurrent
-                  ? "bg-green-500 dark:bg-green-500"
-                  : isPast
-                  ? "bg-gray-500"
-                  : isFuture
-                  ? "bg-gray-200 dark:bg-gray-700"
-                  : ""
-              }`}
-              data-tooltip-content={isCurrent ? "You are here." : undefined}
-            />
-          );
-        })}
-      </div>
-    );
-  });
 
   const MiniStat = React.memo(
     ({
@@ -138,17 +86,21 @@ function App() {
         <div className="flex flex-col">
           <Tooltip id="my-tooltip" />
           <div className="flex justify-between gap-2 mb-5 text-gray-900 dark:text-gray-200">
-            <div className="font-medium leading-[45px] text-[60px]">
-              {age.toFixed(width < 871 ? width / 100 - 1 : 9)}
-            </div>
+            <AgeCounter birthdate={birthdate} width={width} />
             {width > 1030 && (
-              <div className="flex flex-col justify-between text-sm leading-5">
+              <div className="flex flex-col justify-between text-sm leading-4">
                 <MiniStat countedEntity="Day" variable={daysAlive} />
                 <MiniStat countedEntity="Week" variable={weeksAlive} />
               </div>
             )}
           </div>
-          <WeekUI />
+          <WeekGrid
+            weeks={weeks}
+            weeksUntilBirthInFirstYear={weeksUntilBirthInFirstYear}
+            weeksUsed={weeksUsed}
+            hoveredCard={hoveredCard}
+            getWeekNumber={getWeekNumber}
+          />
         </div>
         <div className="w-full">
           <MotivationCards setHoveredCard={setHoveredCard} />
