@@ -254,7 +254,7 @@ export const cards: MotivationCardsType[] = [
   },
   {
     name: "Srinivasa Ramanujan",
-    verb: "independently developed and investigated",
+    verb: "independently discovered",
     what: "Bernoulli numbers",
     birthday: "1887-12-22",
     eventDate: "1911-12-01",
