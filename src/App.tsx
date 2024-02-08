@@ -108,7 +108,7 @@ function App() {
         <span className="text-gray-600 dark:text-gray-300">
           {countedEntity}
         </span>
-        <span className="font-medium text-gray-900 dark:text-gray-100">
+        <span className="font-medium tracking-wider text-gray-900 dark:text-gray-100">
           {variable}
         </span>
       </div>
