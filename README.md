@@ -1,5 +1,7 @@
 This is a Chrome extension that shows 1. the user age, 2. visualises the weeks of their life and how much of these they have already lived, and 3. when successful people accomplished major milestones in their lives.
 
+![showcase](https://github.com/moritzWa/age-motivation/blob/main/public/Google%20Chrome.gif)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
