@@ -119,7 +119,7 @@ function App() {
     <div className="flex flex-col justify-between h-full">
       <div className="grid grid-cols-2 m-auto mt-24 mb-12 gap-11 px-11 max-w-7xl">
         <div
-          className={`flex flex-col ${width > 1080 && "w-[500px]"}${
+          className={`flex flex-col ${width > 1080 && "w-[500px]"} ${
             width > 1200 && "w-[574px]"
           }`}
         >
