@@ -365,13 +365,6 @@ export const cards: MotivationCardsType[] = [
     eventDate: "1874-01-01",
   },
   {
-    name: "Wright Brothers (Orville and Wilbur)",
-    verb: "invent and fly",
-    what: "the first successful airplane",
-    birthday: "1867-08-19",
-    eventDate: "1903-12-17",
-  },
-  {
     name: "Orville Wright",
     verb: "takes",
     what: "first powered flight",
@@ -431,7 +424,7 @@ export const cards: MotivationCardsType[] = [
   {
     name: "Marc Atiyeh",
     verb: "sells",
-    what: "his first company Paribus to Capital One",
+    what: "his first company to Capital One",
     birthday: "1989-09-01",
     eventDate: "2016-10-01",
   },
