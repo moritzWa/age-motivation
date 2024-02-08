@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Age Motivation",
   "description": "A new tab chrome extension to create urgency",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "icons": {
     "48": "icon48.png",
     "128": "icon128.png"
@@ -11,5 +11,7 @@
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
-  "permissions": ["storage"]
+  "action": {
+    "default_popup": "index.html"
+  }
 }
