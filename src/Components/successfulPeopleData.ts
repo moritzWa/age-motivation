@@ -440,7 +440,6 @@ export const cards: MotivationCardsType[] = [
     verb: "scales",
     what: "Vanta to $1.6B valuation",
     birthday: "1986-06-01",
-    // Jun 8, 2022, $1.6 billion valuation
     eventDate: "2021-06-08",
   },
 ];
