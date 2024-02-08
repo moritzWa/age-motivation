@@ -12,6 +12,10 @@
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
-  "permissions": ["storage", "activeTab"],
-  "version": "1.0.0"
+  "permissions": ["storage"],
+  "version": "1.0.0",
+  "icons": {
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
 }
