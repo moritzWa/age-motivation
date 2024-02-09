@@ -435,4 +435,32 @@ export const cards: MotivationCardsType[] = [
     birthday: "1986-06-01",
     eventDate: "2021-06-08",
   },
+  {
+    name: "Marc Andreessen",
+    verb: "co-writes",
+    what: "Mosaic Browser",
+    birthday: "1971-07-09",
+    eventDate: "1993-04-21",
+  },
+  {
+    name: "Joe Lonsdale",
+    verb: "co-founds",
+    what: "Palantir",
+    birthday: "1982-09-12",
+    eventDate: "2003-05-05",
+  },
+  {
+    name: "Joe Lonsdale",
+    verb: "joins",
+    what: "Paypal as an intern",
+    birthday: "1982-09-12",
+    eventDate: "2002-06-01",
+  },
+  {
+    name: "Brian Chesky",
+    verb: "co-founds",
+    what: "Airbnb",
+    birthday: "1981-08-29",
+    eventDate: "2008-08-11",
+  },
 ];
