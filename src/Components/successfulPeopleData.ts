@@ -463,4 +463,32 @@ export const cards: MotivationCardsType[] = [
     birthday: "1981-08-29",
     eventDate: "2008-08-11",
   },
+  {
+    name: "Craig Venter",
+    verb: "publishes",
+    what: "the human genome",
+    birthday: "1946-10-14",
+    eventDate: "2001-02-15",
+  },
+  {
+    name: "Zhang Yiming",
+    verb: "founds",
+    what: "ByteDance",
+    birthday: "1983-04-01",
+    eventDate: "2012-09-01",
+  },
+  {
+    name: "Jennifer Doudna",
+    verb: "discovers",
+    what: "CRISPR gene editing",
+    birthday: "1964-02-19",
+    eventDate: "2012-06-28",
+  },
+  {
+    name: "Jawed Karim",
+    verb: "co-founds",
+    what: "YouTube",
+    birthday: "1979-01-01",
+    eventDate: "2005-04-23",
+  },
 ];
