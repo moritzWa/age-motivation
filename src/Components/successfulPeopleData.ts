@@ -533,4 +533,25 @@ export const cards: MotivationCardsType[] = [
     birthday: "1863-07-30",
     eventDate: "1913-12-01",
   },
+  {
+    name: "Melanie Perkins",
+    verb: "scales",
+    what: "Canva to $165M valuation",
+    birthday: "1987-05-13",
+    eventDate: "2015-10-06",
+  },
+  {
+    name: "Sabrina Gonzalez Pasterski",
+    verb: "builds",
+    what: "a single-engine airplane",
+    birthday: "1993-06-03",
+    eventDate: "2008-01-01",
+  },
+  {
+    name: "Whitney Wolfe Herd",
+    verb: "scales",
+    what: "Bumble to $13B IPO valuation",
+    birthday: "1989-07-01",
+    eventDate: "2021-02-11",
+  },
 ];
