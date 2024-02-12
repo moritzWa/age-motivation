@@ -20,7 +20,7 @@ export const cards: MotivationCardsType[] = [
     age: 25,
     name: "Steve Jobs",
     verb: "takes public",
-    what: "Apple ($1.2B)",
+    what: "Apple (~4.5B in todays dollars)",
     birthday: "1955-02-24",
     eventDate: "1980-12-12",
   },
@@ -554,4 +554,9 @@ export const cards: MotivationCardsType[] = [
     birthday: "1989-07-01",
     eventDate: "2021-02-11",
   },
+  // Richard Feynman!
+
+  // Alexander Hamilton
+
+  // Phil Knight
 ];
