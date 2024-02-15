@@ -554,9 +554,60 @@ export const cards: MotivationCardsType[] = [
     birthday: "1989-07-01",
     eventDate: "2021-02-11",
   },
-  // Richard Feynman!
-
-  // Alexander Hamilton
-
-  // Phil Knight
+  {
+    name: "Joshua Kushner",
+    verb: "founds",
+    what: "Thrive Capital",
+    birthday: "1985-06-12",
+    eventDate: "2010-01-01",
+  },
+  {
+    name: "Richard Feynman",
+    verb: "publishes",
+    what: "Quantum mechanics and path integration",
+    birthday: "1918-05-11",
+    eventDate: "1942-01-01",
+  },
+  {
+    name: "Richard Feynman",
+    verb: "wins",
+    what: "Nobel Prize in Physics",
+    birthday: "1918-05-11",
+    eventDate: "1965-01-01",
+  },
+  {
+    name: "Alexander Hamilton",
+    verb: "writes",
+    what: "51 of the 85 Federalist Papers",
+    birthday: "1755-01-11",
+    eventDate: "1787-10-27",
+  },
+  {
+    name: "Phil Knight",
+    verb: "partners with",
+    what: "Onitsuka Tiger (Japan) to distribute Tiger shoes in US",
+    birthday: "1938-02-24",
+    eventDate: "1962-01-25",
+  },
+  {
+    name: "Phil Knight",
+    verb: "founds",
+    what: "Blue Ribbon Sports (Nike)",
+    birthday: "1938-02-24",
+    eventDate: "1964-01-25",
+  },
+  {
+    name: "Keith Rabois",
+    verb: "joins",
+    what: "PayPal as EVP of business development",
+    birthday: "1969-03-17",
+    eventDate: "2000-11-01",
+  },
+  {
+    name: "Anne Wojcicki",
+    verb: "founds",
+    what: "23andMe",
+    birthday: "1973-07-28",
+    eventDate: "2006-11-22",
+  },
 ];
