@@ -610,4 +610,32 @@ export const cards: MotivationCardsType[] = [
     birthday: "1973-07-28",
     eventDate: "2006-11-22",
   },
+  {
+    name: "Daniel Lee",
+    verb: "becomes",
+    what: "Creative Director of Bottega Veneta",
+    birthday: "1986-01-22",
+    eventDate: "2018-06-15",
+  },
+  {
+    name: "Adam D'Angelo",
+    verb: "releases",
+    what: "Synapse Media Player",
+    birthday: "1984-08-21",
+    eventDate: "2004-01-01",
+  },
+  {
+    name: "Adam D'Angelo",
+    verb: "raises",
+    what: "11m in series A from Benchmark",
+    birthday: "1984-08-21",
+    eventDate: "2010-01-01",
+  },
+  {
+    name: "Parker Conrad",
+    verb: "scales",
+    what: "Zenefits to 4.5B (Series C) valuation",
+    birthday: "1980-01-01",
+    eventDate: "2015-05-06",
+  },
 ];
