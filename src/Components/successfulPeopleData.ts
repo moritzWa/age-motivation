@@ -638,4 +638,11 @@ export const cards: MotivationCardsType[] = [
     birthday: "1980-01-01",
     eventDate: "2015-05-06",
   },
+  {
+    name: "Chamath Palihapitiya",
+    verb: "becomes",
+    what: "VP of Instant Messenger at AOL",
+    birthday: "1976-09-03",
+    eventDate: "2003-01-01",
+  },
 ];
