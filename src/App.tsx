@@ -96,6 +96,8 @@ function App() {
     return <Settings onSave={handleSave} currentSettings={null} />;
   }
 
+  const tooNarrowForTwoColumns = width < 950;
+
   const MiniStat = React.memo(
     ({
       countedEntity,
@@ -108,7 +110,7 @@ function App() {
         <span className="text-gray-600 dark:text-gray-300">
           {countedEntity}
         </span>
-        <span className="font-medium tracking-wider text-gray-900 dark:text-gray-100">
+        <span className="font-medium tracking-normal text-gray-900 dark:text-gray-100">
           {variable}
         </span>
       </div>
@@ -117,16 +119,25 @@ function App() {
 
   return (
     <div className="flex flex-col justify-between h-full">
-      <div className="grid grid-cols-2 m-auto mt-24 mb-12 gap-11 px-11 max-w-7xl">
+      <div
+        className={`grid m-auto mt-24 mb-12 gap-11 px-11 max-w-7xl
+      ${tooNarrowForTwoColumns ? "grid-cols-1 w-[500px]" : "grid-cols-2"}
+      `}
+      >
         <div
-          className={`flex flex-col ${width > 1080 && "w-[500px]"} ${
-            width > 1200 && "w-[574px]"
-          }`}
+          className={`flex flex-col ${width > 1080 && "w-[500px]"}
+          ${width > 1150 && "w-[520px]"}
+          ${width > 1250 && "w-[574px]"}
+        `}
         >
           <Tooltip id="my-tooltip" />
           <div className="flex justify-between gap-2 mb-5 text-gray-900 dark:text-gray-200">
-            <AgeCounter birthdate={birthdate} width={width} />
-            {width > 1030 && (
+            <AgeCounter
+              birthdate={birthdate}
+              width={width}
+              tooNarrowForTwoColumns
+            />
+            {width > 1090 && (
               <div className="flex flex-col justify-between text-sm leading-4">
                 <MiniStat countedEntity="Day" variable={daysAlive} />
                 <MiniStat countedEntity="Week" variable={weeksAlive} />
@@ -141,9 +152,11 @@ function App() {
             getWeekNumber={getWeekNumber}
           />
         </div>
-        <div className="w-full">
-          <MotivationCards setHoveredCard={setHoveredCard} />
-        </div>
+        {!tooNarrowForTwoColumns && (
+          <div className="w-full">
+            <MotivationCards setHoveredCard={setHoveredCard} />
+          </div>
+        )}
       </div>
       <div className="flex justify-end p-4 text-xs text-gray-500 dark:text-gray-400">
         <p onClick={handleOpenSettings} className="cursor-pointer">

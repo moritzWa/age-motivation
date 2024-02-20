@@ -40,7 +40,7 @@ const Settings: FC<SettingsProps> = ({ onSave, currentSettings }) => {
           />
         </label>
         <a
-          className="pb-5"
+          className="pb-5 text-blue-500"
           href="https://www.blueprintincome.com/tools/life-expectancy-calculator-how-long-will-i-live/"
           target="_blank"
           rel="noreferrer noopener"

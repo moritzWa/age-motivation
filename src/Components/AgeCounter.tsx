@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
 
 export const AgeCounter = React.memo(
-  ({ birthdate, width }: { birthdate: Date; width: number }) => {
+  ({
+    birthdate,
+    width,
+    tooNarrowForTwoColumns,
+  }: {
+    birthdate: Date;
+    width: number;
+    tooNarrowForTwoColumns: boolean;
+  }) => {
     // Get the last age from localStorage or set it to 0 if it doesn't exist
     const lastAge = localStorage.getItem("lastAge") || "0";
     const [age, setAge] = useState(parseFloat(lastAge));
@@ -19,7 +27,7 @@ export const AgeCounter = React.memo(
 
     return (
       <div className="font-medium leading-[45px] text-[60px]">
-        {age.toFixed(width < 871 ? width / 100 : 9)}
+        {age.toFixed(width < 800 ? 9 : width < 871 ? width / 100 : 9)}
       </div>
     );
   }
