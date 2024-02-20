@@ -159,15 +159,27 @@ function App() {
         )}
       </div>
       <div className="flex justify-end p-4 text-xs text-gray-500 dark:text-gray-400">
-        <p onClick={handleOpenSettings} className="cursor-pointer">
+        <p
+          onClick={handleOpenSettings}
+          className="cursor-pointer hover:text-gray-700"
+        >
           Settings
         </p>
-        <span className="px-2">•</span>
+        <span className="px-2"></span>
+        <a
+          href="https://chromewebstore.google.com/detail/age-motivation/febbcejjonlekadhjeldcljckdibjobk/reviews"
+          className="text-gray-500 dark:text-gray-400 hover:text-gray-700"
+          target="_blank noopener noreferrer"
+        >
+          Review
+        </a>
+        <span className="px-2"></span>
         <p>
           Made by{" "}
           <a
             href="https://x.com/MoritzW42/"
             className="text-gray-700 dark:text-gray-300 hover:text-blue-500"
+            target="_blank noopener noreferrer"
           >
             Moritz W.
           </a>
