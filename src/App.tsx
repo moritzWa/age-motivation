@@ -120,8 +120,8 @@ function App() {
   return (
     <div className="flex flex-col justify-between h-full">
       <div
-        className={`grid m-auto mt-24 mb-12 gap-11 px-11 max-w-7xl
-      ${tooNarrowForTwoColumns ? "grid-cols-1 w-[500px]" : "grid-cols-2"}
+        className={`grid m-auto mt-24 mb-12 gap-11 max-w-7xl
+      ${tooNarrowForTwoColumns ? "grid-cols-1 w-[500px]" : "grid-cols-2 px-11"}
       `}
       >
         <div
