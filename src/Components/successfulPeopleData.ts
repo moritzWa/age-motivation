@@ -20,7 +20,7 @@ export const cards: MotivationCardsType[] = [
     age: 25,
     name: "Steve Jobs",
     verb: "takes public",
-    what: "Apple (~4.5B in todays dollars)",
+    what: "Apple (4.5B in todays dollars)",
     birthday: "1955-02-24",
     eventDate: "1980-12-12",
   },
@@ -75,7 +75,7 @@ export const cards: MotivationCardsType[] = [
   {
     age: 21,
     name: "Evan Spiegel",
-    verb: "co-founded",
+    verb: "co-founds",
     what: "Snapchat",
     birthday: "1990-06-04",
     eventDate: "2011-07-08",
@@ -254,7 +254,7 @@ export const cards: MotivationCardsType[] = [
   },
   {
     name: "Srinivasa Ramanujan",
-    verb: "independently discovered",
+    verb: "discovered",
     what: "Bernoulli numbers",
     birthday: "1887-12-22",
     eventDate: "1911-12-01",
@@ -634,7 +634,7 @@ export const cards: MotivationCardsType[] = [
   {
     name: "Parker Conrad",
     verb: "scales",
-    what: "Zenefits to 4.5B (Series C) valuation",
+    what: "Zenefits to $4.5B (C-round)",
     birthday: "1980-01-01",
     eventDate: "2015-05-06",
   },
