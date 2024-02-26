@@ -645,4 +645,11 @@ export const cards: MotivationCardsType[] = [
     birthday: "1976-09-03",
     eventDate: "2003-01-01",
   },
+  {
+    name: "Sam Altman",
+    verb: "becomes",
+    what: "YC CEO",
+    birthday: "1976-09-03",
+    eventDate: "2003-01-01",
+  },
 ];
