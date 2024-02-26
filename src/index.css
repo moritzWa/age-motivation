@@ -28,3 +28,7 @@ body {
 #root {
   height: 100%;
 }
+
+#my-tooltip {
+  @apply text-lg text-white bg-gray-900 w-36;
+}
