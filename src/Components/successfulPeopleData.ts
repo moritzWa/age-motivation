@@ -652,4 +652,11 @@ export const cards: MotivationCardsType[] = [
     birthday: "1976-09-03",
     eventDate: "2003-01-01",
   },
+  {
+    name: "Andrej Karpathy",
+    verb: "becomes founding team member at",
+    what: "OpenAI",
+    birthday: "1986-10-23",
+    eventDate: "2015-01-01",
+  },
 ];
