@@ -11,6 +11,7 @@ function App() {
   const [settings, setSettings] = useState<{
     birthdate: string;
     lifeExpectancy: number;
+    showSuccessfulPeople: boolean;
   } | null>(() => {
     const savedSettings = localStorage.getItem("settings");
     return savedSettings ? JSON.parse(savedSettings) : null;
@@ -24,6 +25,7 @@ function App() {
   const handleSave = (newSettings: {
     birthdate: string;
     lifeExpectancy: number;
+    showSuccessfulPeople: boolean;
   }) => {
     setSettings(newSettings);
     localStorage.setItem("settings", JSON.stringify(newSettings));
@@ -121,7 +123,11 @@ function App() {
     <div className="flex flex-col justify-between h-full">
       <div
         className={`grid m-auto mt-24 mb-12 gap-11 max-w-7xl
-      ${tooNarrowForTwoColumns ? "grid-cols-1 w-[500px]" : "grid-cols-2 px-11"}
+      ${
+        tooNarrowForTwoColumns || !settings.showSuccessfulPeople
+          ? " grid-cols-1 "
+          : " grid-cols-2 px-11 "
+      }${tooNarrowForTwoColumns && " w-[500px]"}
       `}
       >
         <div
@@ -152,7 +158,7 @@ function App() {
             getWeekNumber={getWeekNumber}
           />
         </div>
-        {!tooNarrowForTwoColumns && (
+        {!tooNarrowForTwoColumns && settings.showSuccessfulPeople && (
           <div className="w-full">
             <MotivationCards setHoveredCard={setHoveredCard} />
           </div>

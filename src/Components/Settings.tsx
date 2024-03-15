@@ -1,8 +1,16 @@
 import { FC, FormEvent, useState } from "react";
 
 interface SettingsProps {
-  onSave: (settings: { birthdate: string; lifeExpectancy: number }) => void;
-  currentSettings: { birthdate: string; lifeExpectancy: number } | null;
+  onSave: (settings: {
+    birthdate: string;
+    lifeExpectancy: number;
+    showSuccessfulPeople: boolean;
+  }) => void;
+  currentSettings: {
+    birthdate: string;
+    lifeExpectancy: number;
+    showSuccessfulPeople: boolean;
+  } | null;
 }
 
 const Settings: FC<SettingsProps> = ({ onSave, currentSettings }) => {
@@ -10,9 +18,14 @@ const Settings: FC<SettingsProps> = ({ onSave, currentSettings }) => {
   const [lifeExpectancy, setLifeExpectancy] = useState(
     currentSettings?.lifeExpectancy || 85
   );
+  const [showMoreSettings, setShowMoreSettings] = useState(false);
+  const [showSuccessfulPeople, setShowSuccessfulPeople] = useState(
+    currentSettings?.showSuccessfulPeople || false
+  );
+
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    onSave({ birthdate, lifeExpectancy });
+    onSave({ birthdate, lifeExpectancy, showSuccessfulPeople });
   };
 
   return (
@@ -47,6 +60,27 @@ const Settings: FC<SettingsProps> = ({ onSave, currentSettings }) => {
         >
           Life expectancy calculator
         </a>
+        <div
+          className={`mb-4 cursor-pointer ${
+            showMoreSettings
+              ? "text-gray-900 dark:text-gray-200"
+              : "text-gray-600 dark:text-gray-400"
+          }`}
+          onClick={() => setShowMoreSettings(!showMoreSettings)}
+        >
+          More Settings
+        </div>
+        {showMoreSettings && (
+          <label className="mb-4">
+            Show successful people list:
+            <input
+              type="checkbox"
+              checked={showSuccessfulPeople}
+              className="ml-2"
+              onChange={(e) => setShowSuccessfulPeople(e.target.checked)}
+            />
+          </label>
+        )}
         <button
           type="submit"
           className="px-4 py-2 text-white bg-blue-500 rounded"
