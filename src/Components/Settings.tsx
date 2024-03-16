@@ -5,11 +5,13 @@ interface SettingsProps {
     birthdate: string;
     lifeExpectancy: number;
     showSuccessfulPeople: boolean;
+    showMotivationalQuotes: boolean;
   }) => void;
   currentSettings: {
     birthdate: string;
     lifeExpectancy: number;
     showSuccessfulPeople: boolean;
+    showMotivationalQuotes: boolean;
   } | null;
 }
 
@@ -22,10 +24,16 @@ const Settings: FC<SettingsProps> = ({ onSave, currentSettings }) => {
   const [showSuccessfulPeople, setShowSuccessfulPeople] = useState(
     currentSettings?.showSuccessfulPeople || false
   );
+  const [showMotivationalQuotes, setShowMotivationalQuotes] = useState(false);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    onSave({ birthdate, lifeExpectancy, showSuccessfulPeople });
+    onSave({
+      birthdate,
+      lifeExpectancy,
+      showSuccessfulPeople,
+      showMotivationalQuotes,
+    });
   };
 
   return (
@@ -71,15 +79,26 @@ const Settings: FC<SettingsProps> = ({ onSave, currentSettings }) => {
           More Settings
         </div>
         {showMoreSettings && (
-          <label className="mb-4">
-            Show successful people list:
-            <input
-              type="checkbox"
-              checked={showSuccessfulPeople}
-              className="ml-2"
-              onChange={(e) => setShowSuccessfulPeople(e.target.checked)}
-            />
-          </label>
+          <>
+            <label className="mb-4">
+              Show successful people list
+              <input
+                type="checkbox"
+                checked={showSuccessfulPeople}
+                className="ml-2"
+                onChange={(e) => setShowSuccessfulPeople(e.target.checked)}
+              />
+            </label>
+            <label className="mb-4">
+              Display motivational quotes
+              <input
+                type="checkbox"
+                checked={showMotivationalQuotes}
+                className="ml-2"
+                onChange={(e) => setShowMotivationalQuotes(e.target.checked)}
+              />
+            </label>
+          </>
         )}
         <button
           type="submit"

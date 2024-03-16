@@ -3,6 +3,7 @@ import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import { AgeCounter } from "./Components/AgeCounter";
 import MotivationCards from "./Components/MotivationCards";
+import { MotivationalQuotes } from "./Components/MotivationalQuote";
 import Settings from "./Components/Settings";
 import { WeekGrid } from "./Components/WeekGrid";
 
@@ -12,6 +13,7 @@ function App() {
     birthdate: string;
     lifeExpectancy: number;
     showSuccessfulPeople: boolean;
+    showMotivationalQuotes: boolean;
   } | null>(() => {
     const savedSettings = localStorage.getItem("settings");
     return savedSettings ? JSON.parse(savedSettings) : null;
@@ -26,6 +28,7 @@ function App() {
     birthdate: string;
     lifeExpectancy: number;
     showSuccessfulPeople: boolean;
+    showMotivationalQuotes: boolean;
   }) => {
     setSettings(newSettings);
     localStorage.setItem("settings", JSON.stringify(newSettings));
@@ -124,7 +127,8 @@ function App() {
       <div
         className={`grid m-auto mt-24 mb-12 gap-11 max-w-7xl
       ${
-        tooNarrowForTwoColumns || !settings.showSuccessfulPeople
+        tooNarrowForTwoColumns ||
+        (!settings.showSuccessfulPeople && !settings.showMotivationalQuotes)
           ? " grid-cols-1 "
           : " grid-cols-2 px-11 "
       }${tooNarrowForTwoColumns && " w-[500px]"}
@@ -158,11 +162,15 @@ function App() {
             getWeekNumber={getWeekNumber}
           />
         </div>
-        {!tooNarrowForTwoColumns && settings.showSuccessfulPeople && (
-          <div className="w-full">
+
+        <div className="w-full">
+          {!tooNarrowForTwoColumns && settings.showSuccessfulPeople && (
             <MotivationCards setHoveredCard={setHoveredCard} />
-          </div>
-        )}
+          )}
+          {!tooNarrowForTwoColumns && settings.showMotivationalQuotes && (
+            <MotivationalQuotes />
+          )}
+        </div>
       </div>
       <div className="flex justify-end p-4 text-xs text-gray-500 dark:text-gray-400">
         <p
