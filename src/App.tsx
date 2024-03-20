@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import { AgeCounter } from "./Components/AgeCounter";
@@ -6,6 +6,7 @@ import MotivationCards from "./Components/MotivationCards";
 import { MotivationalQuotes } from "./Components/MotivationalQuote";
 import Settings from "./Components/Settings";
 import { WeekGrid } from "./Components/WeekGrid";
+import { MotivationCardsType, cards } from "./Components/successfulPeopleData";
 
 function App() {
   // settings
@@ -48,6 +49,26 @@ function App() {
   const updateDimensions = () => {
     setWidth(window.innerWidth);
   };
+
+  // cards display
+  const [allRandomCards, setAllRandomCards] = useState<MotivationCardsType[]>(
+    []
+  );
+  const motivationalQuotesRef = useRef<HTMLDivElement>(null);
+  const rightSideComponentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (motivationalQuotesRef.current && rightSideComponentRef.current) {
+      const quoteHeight = motivationalQuotesRef.current.offsetHeight;
+      const componentHeight = rightSideComponentRef.current.offsetHeight;
+
+      const numberOfCards = Math.floor((componentHeight - quoteHeight) / 40);
+      const generateCards = () => {
+        return cards.sort(() => 0.5 - Math.random()).slice(0, numberOfCards);
+      };
+      setAllRandomCards(generateCards());
+    }
+  }, []);
 
   // card hovering
   const [hoveredCard, setHoveredCard] = useState<{
@@ -102,8 +123,6 @@ function App() {
   }
 
   const tooNarrowForTwoColumns = width < 950;
-  const bothRightSideSectionsEnabled =
-    settings.showSuccessfulPeople && settings.showMotivationalQuotes;
 
   const MiniStat = React.memo(
     ({
@@ -162,6 +181,7 @@ function App() {
             weeksUsed={weeksUsed}
             hoveredCard={hoveredCard}
             getWeekNumber={getWeekNumber}
+            ref={rightSideComponentRef}
           />
         </div>
 
@@ -169,11 +189,11 @@ function App() {
           {!tooNarrowForTwoColumns && settings.showSuccessfulPeople && (
             <MotivationCards
               setHoveredCard={setHoveredCard}
-              bothRightSideSectionsEnabled
+              allRandomCards={allRandomCards}
             />
           )}
           {!tooNarrowForTwoColumns && settings.showMotivationalQuotes && (
-            <MotivationalQuotes />
+            <MotivationalQuotes ref={motivationalQuotesRef} />
           )}
         </div>
       </div>

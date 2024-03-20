@@ -1,10 +1,10 @@
-import { MotivationCardsType, cards } from "./successfulPeopleData";
+import { MotivationCardsType } from "./successfulPeopleData";
 
 interface MotivationCardsProps {
   setHoveredCard: (
     newState: { eventDate: string; birthday: string } | null
   ) => void;
-  bothRightSideSectionsEnabled: boolean;
+  allRandomCards: MotivationCardsType[];
 }
 
 interface CardProps extends MotivationCardsType {
@@ -55,15 +55,9 @@ const Card = ({
 
 const MotivationCards = ({
   setHoveredCard,
-  bothRightSideSectionsEnabled,
+  allRandomCards,
 }: MotivationCardsProps) => {
-  const numberOfCardsWeCanDisplay = bothRightSideSectionsEnabled ? 5 : 19;
-
-  const randomCards = [...cards]
-    .sort(() => 0.5 - Math.random())
-    .slice(0, numberOfCardsWeCanDisplay);
-
-  const cardsSortedByAge = randomCards.sort(
+  const cardsSortedByAge = allRandomCards.sort(
     (a, b) =>
       new Date(a.eventDate).getTime() -
       new Date(a.birthday).getTime() -
