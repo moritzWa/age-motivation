@@ -62,6 +62,12 @@ function App() {
       const quoteHeight = motivationalQuotesRef.current.offsetHeight;
       const componentHeight = rightSideComponentRef.current.offsetHeight;
 
+      console.log(
+        quoteHeight,
+        componentHeight,
+        (componentHeight - quoteHeight) / 40
+      );
+
       const numberOfCards = Math.floor((componentHeight - quoteHeight) / 40);
       const generateCards = () => {
         return cards.sort(() => 0.5 - Math.random()).slice(0, numberOfCards);
