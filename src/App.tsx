@@ -74,7 +74,7 @@ function App() {
       };
       setAllRandomCards(generateCards());
     }
-  }, []);
+  }, [rightSideComponentRef.current]);
 
   // card hovering
   const [hoveredCard, setHoveredCard] = useState<{
