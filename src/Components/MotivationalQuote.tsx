@@ -4,6 +4,10 @@ const quotes = [
       "One way to remember who you are is to remember who your heroes are.",
     author: "Steve Jobs",
   },
+  {
+    quote:
+      "Disctructions are the the inability to manage emotional discomfort.",
+  },
 ];
 
 export const MotivationalQuotes = () => {
@@ -12,9 +16,11 @@ export const MotivationalQuotes = () => {
       <span className="text-gray-900 dark:text-gray-100">
         {quotes[0].quote}
       </span>
-      <span className="pt-5 text-3xl font-medium text-gray-700 dark:text-gray-300">
-        — {quotes[0].author}
-      </span>
+      {quotes[0].author && (
+        <span className="pt-5 text-3xl font-medium text-gray-700 dark:text-gray-300">
+          — {quotes[0].author}
+        </span>
+      )}
     </div>
   );
 };

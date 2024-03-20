@@ -102,6 +102,8 @@ function App() {
   }
 
   const tooNarrowForTwoColumns = width < 950;
+  const bothRightSideSectionsEnabled =
+    settings.showSuccessfulPeople && settings.showMotivationalQuotes;
 
   const MiniStat = React.memo(
     ({
@@ -163,9 +165,12 @@ function App() {
           />
         </div>
 
-        <div className="w-full">
+        <div className="flex flex-col justify-between h-fullw-full">
           {!tooNarrowForTwoColumns && settings.showSuccessfulPeople && (
-            <MotivationCards setHoveredCard={setHoveredCard} />
+            <MotivationCards
+              setHoveredCard={setHoveredCard}
+              bothRightSideSectionsEnabled
+            />
           )}
           {!tooNarrowForTwoColumns && settings.showMotivationalQuotes && (
             <MotivationalQuotes />

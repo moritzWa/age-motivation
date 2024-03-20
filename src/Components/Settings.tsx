@@ -24,7 +24,9 @@ const Settings: FC<SettingsProps> = ({ onSave, currentSettings }) => {
   const [showSuccessfulPeople, setShowSuccessfulPeople] = useState(
     currentSettings?.showSuccessfulPeople || false
   );
-  const [showMotivationalQuotes, setShowMotivationalQuotes] = useState(false);
+  const [showMotivationalQuotes, setShowMotivationalQuotes] = useState(
+    currentSettings?.showMotivationalQuotes || false
+  );
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();

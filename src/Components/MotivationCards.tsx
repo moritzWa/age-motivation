@@ -4,6 +4,7 @@ interface MotivationCardsProps {
   setHoveredCard: (
     newState: { eventDate: string; birthday: string } | null
   ) => void;
+  bothRightSideSectionsEnabled: boolean;
 }
 
 interface CardProps extends MotivationCardsType {
@@ -11,15 +12,6 @@ interface CardProps extends MotivationCardsType {
     newState: { eventDate: string; birthday: string } | null
   ) => void;
 }
-
-const randomCards = [...cards].sort(() => 0.5 - Math.random()).slice(0, 19);
-
-const cardsSortedByAge = randomCards.sort(
-  (a, b) =>
-    new Date(a.eventDate).getTime() -
-    new Date(a.birthday).getTime() -
-    (new Date(b.eventDate).getTime() - new Date(b.birthday).getTime())
-);
 
 const Card = ({
   name,
@@ -61,9 +53,25 @@ const Card = ({
   );
 };
 
-const MotivationCards = ({ setHoveredCard }: MotivationCardsProps) => {
+const MotivationCards = ({
+  setHoveredCard,
+  bothRightSideSectionsEnabled,
+}: MotivationCardsProps) => {
+  const numberOfCardsWeCanDisplay = bothRightSideSectionsEnabled ? 5 : 19;
+
+  const randomCards = [...cards]
+    .sort(() => 0.5 - Math.random())
+    .slice(0, numberOfCardsWeCanDisplay);
+
+  const cardsSortedByAge = randomCards.sort(
+    (a, b) =>
+      new Date(a.eventDate).getTime() -
+      new Date(a.birthday).getTime() -
+      (new Date(b.eventDate).getTime() - new Date(b.birthday).getTime())
+  );
+
   return (
-    <div className="h-full">
+    <div className="">
       {cardsSortedByAge.map((c) => (
         <Card {...c} setHoveredCard={setHoveredCard} />
       ))}
