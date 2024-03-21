@@ -108,18 +108,17 @@ function App() {
   const gridHeight = numRows * gridItemHeight + (numRows - 1) * gridGapHeight;
 
   useEffect(() => {
-    if (motivationalQuotesRef.current && gridHeight !== 0) {
-      const quoteHeight = motivationalQuotesRef.current.offsetHeight;
+    const quoteHeight = motivationalQuotesRef.current?.offsetHeight || 0;
+    const numberOfCards =
+      settings?.showMotivationalQuotes && settings.showSuccessfulPeople
+        ? Math.floor((gridHeight - quoteHeight) / 40) - 3
+        : Math.floor(gridHeight / 40) - 1;
 
-      console.log(quoteHeight, gridHeight, (gridHeight - quoteHeight) / 40);
-
-      const numberOfCards = Math.floor((gridHeight - quoteHeight) / 40);
-      const generateCards = () => {
-        return cards.sort(() => 0.5 - Math.random()).slice(0, numberOfCards);
-      };
-      setAllRandomCards(generateCards());
-    }
-  }, [totalWeeks]);
+    const generateCards = () => {
+      return cards.sort(() => 0.5 - Math.random()).slice(0, numberOfCards);
+    };
+    setAllRandomCards(generateCards());
+  }, [gridHeight, settings]);
 
   // Settings UI
   if (showSettings) {
