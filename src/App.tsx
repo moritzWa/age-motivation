@@ -50,32 +50,6 @@ function App() {
     setWidth(window.innerWidth);
   };
 
-  // cards display
-  const [allRandomCards, setAllRandomCards] = useState<MotivationCardsType[]>(
-    []
-  );
-  const motivationalQuotesRef = useRef<HTMLDivElement>(null);
-  const rightSideComponentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (motivationalQuotesRef.current && rightSideComponentRef.current) {
-      const quoteHeight = motivationalQuotesRef.current.offsetHeight;
-      const componentHeight = rightSideComponentRef.current.offsetHeight;
-
-      console.log(
-        quoteHeight,
-        componentHeight,
-        (componentHeight - quoteHeight) / 40
-      );
-
-      const numberOfCards = Math.floor((componentHeight - quoteHeight) / 40);
-      const generateCards = () => {
-        return cards.sort(() => 0.5 - Math.random()).slice(0, numberOfCards);
-      };
-      setAllRandomCards(generateCards());
-    }
-  }, [rightSideComponentRef.current]);
-
   // card hovering
   const [hoveredCard, setHoveredCard] = useState<{
     eventDate: string;
@@ -108,6 +82,8 @@ function App() {
     const oneWeek = 1000 * 60 * 60 * 24 * 7;
     return Math.floor(diff / oneWeek);
   };
+
+  // weeks logic
   const weeksAlive = Math.floor(
     (Date.now() - birthdate.getTime()) / 1000 / 60 / 60 / 24 / 7
   );
@@ -117,6 +93,32 @@ function App() {
   const [weeks, setWeeks] = useState([]);
   useEffect(() => {
     setWeeks(Array.from({ length: totalWeeks }));
+  }, [totalWeeks]);
+  // cards display
+  const [allRandomCards, setAllRandomCards] = useState<MotivationCardsType[]>(
+    []
+  );
+  const motivationalQuotesRef = useRef<HTMLDivElement>(null);
+  const weekGridRef = useRef<HTMLDivElement>(null);
+  const gridItemHeight = 8; // height of each grid item in pixels
+  const gridGapHeight = 1; // height of each grid gap in pixels
+  const numColumns = 52;
+
+  const numRows = Math.ceil(totalWeeks / numColumns);
+  const gridHeight = numRows * gridItemHeight + (numRows - 1) * gridGapHeight;
+
+  useEffect(() => {
+    if (motivationalQuotesRef.current && gridHeight !== 0) {
+      const quoteHeight = motivationalQuotesRef.current.offsetHeight;
+
+      console.log(quoteHeight, gridHeight, (gridHeight - quoteHeight) / 40);
+
+      const numberOfCards = Math.floor((gridHeight - quoteHeight) / 40);
+      const generateCards = () => {
+        return cards.sort(() => 0.5 - Math.random()).slice(0, numberOfCards);
+      };
+      setAllRandomCards(generateCards());
+    }
   }, [totalWeeks]);
 
   // Settings UI
@@ -187,7 +189,7 @@ function App() {
             weeksUsed={weeksUsed}
             hoveredCard={hoveredCard}
             getWeekNumber={getWeekNumber}
-            ref={rightSideComponentRef}
+            ref={weekGridRef}
           />
         </div>
 

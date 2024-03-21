@@ -65,9 +65,13 @@ const MotivationCards = ({
   );
 
   return (
-    <div className="">
+    <div>
       {cardsSortedByAge.map((c) => (
-        <Card {...c} setHoveredCard={setHoveredCard} />
+        <Card
+          {...c}
+          setHoveredCard={setHoveredCard}
+          key={c.eventDate + c.birthday}
+        />
       ))}
     </div>
   );
