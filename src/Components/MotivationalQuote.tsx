@@ -1,16 +1,5 @@
 import React from "react";
-
-const quotes = [
-  {
-    quote:
-      "One way to remember who you are is to remember who your heroes are.",
-    author: "Steve Jobs",
-  },
-  {
-    quote:
-      "Disctructions are the the inability to manage emotional discomfort.",
-  },
-];
+import { quotes } from "./quotesData";
 
 export const MotivationalQuotes = React.forwardRef<HTMLDivElement>(
   (props, ref) => {
