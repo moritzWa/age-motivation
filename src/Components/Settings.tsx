@@ -20,7 +20,7 @@ const Settings: FC<SettingsProps> = ({ onSave, currentSettings }) => {
   const [lifeExpectancy, setLifeExpectancy] = useState(
     currentSettings?.lifeExpectancy || 85
   );
-  const [showMoreSettings, setShowMoreSettings] = useState(false);
+  const [showMoreSettings, setShowMoreSettings] = useState(true);
   const [showSuccessfulPeople, setShowSuccessfulPeople] = useState(
     currentSettings?.showSuccessfulPeople || false
   );
