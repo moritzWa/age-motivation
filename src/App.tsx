@@ -111,7 +111,7 @@ function App() {
     const quoteHeight = motivationalQuotesRef.current?.offsetHeight || 0;
     const numberOfCards =
       settings?.showMotivationalQuotes && settings.showSuccessfulPeople
-        ? Math.floor((gridHeight - quoteHeight) / 40) - 3
+        ? Math.floor((gridHeight - quoteHeight) / 40) - 2
         : Math.floor(gridHeight / 40) - 1;
 
     const generateCards = () => {
