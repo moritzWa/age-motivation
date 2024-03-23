@@ -76,4 +76,14 @@ export const quotes = [
     quote: "Discipline and patience is a form of arbitrage",
     author: "Mike Maples, Jr",
   },
+  {
+    quote:
+      "You can do so much in 10 minutes time. Ten minutes, once gone, are gone for good. Divide your life into 10-minute units and sacrifice as few of them as possible in meaningless activity.",
+    author: "Ingvar Kamprad",
+  },
+  {
+    quote:
+      "When you arise in the morning, think of what a precious privilege it is to be alive - to breathe, to think, to enjoy, to love.",
+    author: "Marcus Aurelius",
+  },
 ];
