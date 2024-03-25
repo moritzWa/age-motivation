@@ -22,8 +22,8 @@ function App() {
 
   const [showSettings, setShowSettings] = useState(!settings);
 
-  const birthdate = new Date(settings?.birthdate || "1998-13-12");
-  const lifeExpectancy = settings?.lifeExpectancy || 85;
+  const birthdate = new Date(settings?.birthdate || "1998-12-13");
+  const lifeExpectancy = settings?.lifeExpectancy || 88;
 
   const handleSave = (newSettings: {
     birthdate: string;

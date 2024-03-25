@@ -17,27 +17,43 @@ export const AgeCounter = React.memo(
     useEffect(() => {
       const interval = setInterval(() => {
         const now = new Date();
-        let age = now.getFullYear() - birthdate.getFullYear();
-        const m = now.getMonth() - birthdate.getMonth();
-        if (m < 0 || (m === 0 && now.getDate() < birthdate.getDate())) {
-          age--;
+        let ageAsIFBornOnFirstDayOfYear =
+          now.getFullYear() - birthdate.getFullYear();
+        const monthToBirthdayMonth = now.getMonth() - birthdate.getMonth();
+
+        if (
+          monthToBirthdayMonth < 0 ||
+          (monthToBirthdayMonth === 0 && now.getDate() <= birthdate.getDate())
+        ) {
+          ageAsIFBornOnFirstDayOfYear--;
         }
-        const lastBirthday = new Date(
-          now.getFullYear(),
+        const thisYearsBirthday = new Date(
+          now.getFullYear() -
+            (monthToBirthdayMonth < 0 ||
+            (monthToBirthdayMonth === 0 && now.getDate() < birthdate.getDate())
+              ? 1
+              : 0),
           birthdate.getMonth(),
           birthdate.getDate()
         );
-        const nextBirthday = new Date(
+        const nextYearsBirthday = new Date(
           now.getFullYear() + 1,
           birthdate.getMonth(),
           birthdate.getDate()
         );
-        const yearFraction =
-          (now.getTime() - lastBirthday.getTime()) /
-          (nextBirthday.getTime() - lastBirthday.getTime());
-        setAge(age + yearFraction);
+        const fractionOfYearSinceLastBirthday =
+          (now.getTime() - thisYearsBirthday.getTime()) /
+          (nextYearsBirthday.getTime() - thisYearsBirthday.getTime());
+
+        setAge(ageAsIFBornOnFirstDayOfYear + fractionOfYearSinceLastBirthday);
+
         // Save the new age to localStorage
-        localStorage.setItem("lastAge", (age + yearFraction).toString());
+        localStorage.setItem(
+          "lastAge",
+          (
+            ageAsIFBornOnFirstDayOfYear + fractionOfYearSinceLastBirthday
+          ).toString()
+        );
       }, 100);
       return () => clearInterval(interval);
     }, [birthdate]);
