@@ -86,4 +86,9 @@ export const quotes = [
       "When you arise in the morning, think of what a precious privilege it is to be alive - to breathe, to think, to enjoy, to love.",
     author: "Marcus Aurelius",
   },
+  {
+    quote:
+      "The mind adapts and converts to its own purposes the obstacle to our acting. The impediment to action advances action. What stands in the way becomes the way.",
+    author: "Marcus Aurelius",
+  },
 ];
