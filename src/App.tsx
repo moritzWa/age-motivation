@@ -170,11 +170,7 @@ function App() {
         >
           <Tooltip id="my-tooltip" />
           <div className="flex justify-between gap-2 mb-5 text-gray-900 dark:text-gray-200">
-            <AgeCounter
-              birthdate={birthdate}
-              width={width}
-              tooNarrowForTwoColumns
-            />
+            <AgeCounter birthdate={birthdate} width={width} />
             {width > 1090 && (
               <div className="flex flex-col justify-between text-sm leading-4">
                 <MiniStat countedEntity="Day" variable={daysAlive} />
