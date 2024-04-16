@@ -677,8 +677,8 @@ export const cards: MotivationCardsType[] = [
     name: "Ludwig Boltzmann",
     verb: "becomes",
     what: "university professor at Graz",
-    birthday: "1944-02-20",
-    eventDate: "1873-01-01",
+    birthday: "1844-02-20",
+    eventDate: "1869-01-01",
   },
   {
     name: "Albert Einstein",
